@@ -17,6 +17,3 @@ class Monster:
     # Otherwise to understand how it works/ how it's supposed to work look at Player.take_damage()
     def take_damage(self, damage):
         self.health -= damage
-        if self.health < 0:
-            return False
-        return True
