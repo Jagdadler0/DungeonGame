@@ -9,13 +9,15 @@ class Room:
         return f'{self.description}'
     def fight_round(self, player: Player.Player):
         print(f'The monster hits you with {self.monster.strength} strength.')
-        if not player.take_damage(self.monster.strength):
+        player.take_damage(self.monster.strength)
+        if player.health <= 0:
             print('You lost the fight')
             return 1
         print(player)
 
         print(f'You hit the monster with {player.strength} strength.')
-        if not self.monster.take_damage(player.strength):
+        self.monster.take_damage(player.strength)
+        if self.monster.health <= 0:
             print('The monster is dead')
             player.regain_health(self.monster.healthToRegain)
             return 2
