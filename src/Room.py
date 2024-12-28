@@ -35,12 +35,12 @@ class Room:
                 print('You chose FIGHT!')
                 val = self.fight_round(player)
                 if val == 1:    # Monster is defeated
-                    return # TODO Next Room must be loaded
+                    return True
                 elif val == 2:  # Player is defeated
-                    return # TODO Gameplay Loop must be ended
+                    return False
             elif re.search('^r',inp):
                 print('You chose RUN!\nYou sprint out of the room and take 10 damage!')
                 player.take_damage(10)
-                break
+                return True
             else:
                 print('Not a valid input')
