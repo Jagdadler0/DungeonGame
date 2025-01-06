@@ -3,9 +3,8 @@ class Monster:
         self._name = name
         self._strength = strength
         self._health = health
-        # healthToRegain is supposed to be a constant value of the Monsters health.
-        # This is to ensure that the player will receive the correct amount of health
-        # after the Monster is defeated
+        # Instead of lost_health I originally just had a constant copy of the original health
+        # This just made it more annoying to deal with it.
         self._lost_health = 0
     @property
     def name(self):
@@ -19,8 +18,15 @@ class Monster:
     @property
     def lost_health(self):
         return self._lost_health
+    # Already said something about oneliners in Player.py
     def __str__(self):
         return f'Monster {self.name} has {self.strength} strength and {self.health} health.'
+    # See comment for lost_health as to why I hate this function so much.
+    # It could have been so simple...
+    # Just return a false value if health reached <= 0 and call for the monsters original health.
+    # And Boom! you got the exact value you want. But oh no the unittests said no. So now I had to
+    # do it like this.
+    # I made it work. But it could have been so much simpler.
     def take_damage(self, damage):
         if self._health - damage >= 0:
             self._health -= damage
