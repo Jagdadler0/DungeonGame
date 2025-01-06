@@ -19,7 +19,7 @@ class Room:
         self.monster.take_damage(player.strength)
         if self.monster.health <= 0:
             print('The monster is dead')
-            player.regain_health(self.monster.healthToRegain)
+            player.regain_health(self.monster.lost_health/2)
             return 2
         print(self.monster)
     def interact(self, player: Player.Player):

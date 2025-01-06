@@ -1,17 +1,23 @@
 import Player
 import Monster
 import Room
+import random
 def __main__():
     run_game(5)
 def initialize_player(username):
-    return Player.Player(username)
+    return Player.Player(username, random.randint(40,80), 100)
 def initialize_rooms(rooms):
     ret_room = []
     for room in rooms:
-        ret_room.append(Room.Room(rooms[room]['desc'],Monster.Monster(rooms[room]['monster'])))
+        monster = Monster.Monster(rooms[room]['monster'], random.randint(20,40), random.randint(40,80))
+        ret_room.append(Room.Room(rooms[room]['desc'],monster))
     return ret_room
 def print_results(player):
-    print(f'The game is over!\nThank you for playing Dungeon Master!\nGood Bye!')
+    print('---------------------------------------------')
+    print('The game is over!')
+    print(player)
+    print('Thank you for playing Dungeon Master!')
+    print('Good Bye!')
 def run_game(nr_of_rooms: int):
     print('Welcome to the Dungeon')
     player = initialize_player(input('Username:\n'))
@@ -25,5 +31,3 @@ def run_game(nr_of_rooms: int):
         if res:
             break
     print_results(player)
-
-run_game(5)
